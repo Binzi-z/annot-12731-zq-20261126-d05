@@ -1,0 +1,31 @@
+{
+  "schema": "reviewer12731/cert/v1",
+  "certKind": "conflict-boundary-pair/v1",
+  "pairKind": "PREDECESSOR_MISMATCH",
+  "partition": "acct",
+  "seq": 7,
+  "watermark": 7,
+  "anchor": {
+    "partition": "acct",
+    "seq": 0,
+    "digest": "sha256:8daf7de29a18b72e54674f72cb232a8ed0262da2f910b9a2623bb79a383dd525",
+    "label": "pinned-genesis"
+  },
+  "a": {
+    "partition": "acct",
+    "seq": 7,
+    "prev": "sha256:bc332c27313b177c68c10b78120578a5c5e868828ab9bb2dd21cf590a76d78c8",
+    "nonce": "valid-record-07",
+    "signer": "node-a",
+    "signature": "z7m5ZGLC0i+aYKHWA3FNXm7vFxYsdqt/BaYTWf8/HHZOT8qSf1TV3BF7nNiHAmi+geSaN6+G+ZMhpxEKyYwwCA=="
+  },
+  "b": {
+    "partition": "acct",
+    "seq": 7,
+    "prev": "sha256:33a7f0a8be142a4bf4fe8d2bce06aeec75fb894de8d57a64df8b4d02c0d7d066",
+    "nonce": "forked-record-07",
+    "signer": "node-b",
+    "signature": "M3w5JAS/xek6KJn6oxaP8z0jHUFHlgFU4UH7+TDKJwrSfsYgjrW0dvMfRqyFW9cmBJU+kBPFEcvWBEkmOzl5Dw=="
+  },
+  "certHash": "sha256:7e8f2ab5e89a262337acd7e6bd999f496a2765bafb6005cc973a34f281273bea"
+}

@@ -1,0 +1,12 @@
+PASS  canonical watermark conclusions
+PASS  sealed conflict certificate standalone
+PASS  certificate tamper detection
+PASS  historical watermark hash reproducibility
+PASS  fact input-order independence
+PASS  large three-gap partition locality
+      gap[0] p02 [1537..1600] comparisons=137 (probes=7 item=65 link=65) globalBaseline=2298 ratio=0.060 scanned=[p02/seg-023 p02/seg-024 p02/seg-025]
+      gap[1] p05 [3073..3136] comparisons=137 (probes=7 item=65 link=65) globalBaseline=2298 ratio=0.060 scanned=[p05/seg-047 p05/seg-048 p05/seg-049]
+      gap[2] p08 [4609..4672] comparisons=137 (probes=7 item=65 link=65) globalBaseline=2298 ratio=0.060 scanned=[p08/seg-071 p08/seg-072 p08/seg-073]
+PASS  exhaustive small-graph insert/withdraw/order (1956 permutation runs)
+
+ALL CHECKS PASSED

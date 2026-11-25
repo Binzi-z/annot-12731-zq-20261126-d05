@@ -1,0 +1,53 @@
+==============================================================
+ 离线复核器 12731 · 三份已封存副本合成场景
+==============================================================
+受信起点: partition=acct seq=0 digest=sha256:8daf7de...383dd525
+副本: dc-north(Langfang, 边界11, 缺段[segment-seq05]) | dc-central(Hohhot, 边界7, 缺段[segment-seq02-03 segment-seq05]) | dc-south(Guiyang, 边界8, 缺段[segment-seq05 segment-seq08])
+
+历史恢复水位结论（每个哈希可重复构建）:
+  水位       状态                         可信到      最早冲突             结论哈希
+  3        REACHED_WATERMARK          3        -                sha256:d3903fe...112afb39
+  4        REACHED_WATERMARK          4        -                sha256:1f47bb7...f33ac529
+  6        BLOCKED_BY_UNPROVEN_GAP    4        -                sha256:0c48fec...270ccc0e
+  7        BLOCKED_BY_UNPROVEN_GAP    4        seq7/PREDECESSOR_MISMATCH sha256:4a8dc1b...540d9f5f
+  8        BLOCKED_BY_UNPROVEN_GAP    4        seq7/PREDECESSOR_MISMATCH sha256:40b2375...6561ea12
+  10       BLOCKED_BY_UNPROVEN_GAP    4        seq7/PREDECESSOR_MISMATCH sha256:bbd052a...662b9833
+
+指定水位 7: 最长可信前缀连接数=4 (可信到 seq 4)
+  未证区间(紧邻前缀): &{Partition:acct From:5 To:6}
+  全部未证区间: [{acct 5 6}]
+  最早已证冲突: seq 7 类型=PREDECESSOR_MISMATCH
+    边界A sha256:c40801c...f25bae8f prev=sha256:bc332c2...a76d78c8
+    边界B sha256:ff628c5...0a46d4a9 prev=sha256:33a7f0a...c0d7d066
+  有效交接: [ho-acct-10]  已撤销交接: [ho-acct-9]
+  已拒绝撤销: revoke-bad-acct-10 -> ho-acct-10 (revoker "node-b" is not authorized owner "node-handoff")
+
+最小边界证书已写出: artifacts\demo\conflict-cert-wm7.json
+常量信任束已写出:   artifacts\demo\trust-bundle.json (第三方只需它+证书，无需原库)
+三份副本已写出:     artifacts\demo\sealed-copies.json
+
+第三方离线验证（仅读取证书与信任束两个小文件）:
+{
+  "pairDetected": true,
+  "strongContradiction": true,
+  "kind": "PREDECESSOR_MISMATCH",
+  "partition": "acct",
+  "seq": 7,
+  "hashIntact": true,
+  "authenticityChecked": true,
+  "signaturesValid": true,
+  "contextAdmissible": true,
+  "effectiveHandoffs": null,
+  "revokedHandoffs": null,
+  "notes": null
+}
+
+>> 已检出互相矛盾的两个边界（同一序号、不同前序摘要）
+
+大数据三空档局部扫描度量:
+  规模: 12 分区 × 96 段 × 64 边界 = 73728 条; 移除3个隔开的段形成空档
+  空档0 p02 [1537..1600]: comparisons total=137 (segmentProbe=7 itemKey=65 link=65) partitionsTouched=[p02] scannedSegments=3 probedSegments=7 | 全局裸扫比较≈2298 | 局部/全局=0.0596
+  空档1 p05 [3073..3136]: comparisons total=137 (segmentProbe=7 itemKey=65 link=65) partitionsTouched=[p05] scannedSegments=3 probedSegments=7 | 全局裸扫比较≈2298 | 局部/全局=0.0596
+  空档2 p08 [4609..4672]: comparisons total=137 (segmentProbe=7 itemKey=65 link=65) partitionsTouched=[p08] scannedSegments=3 probedSegments=7 | 全局裸扫比较≈2298 | 局部/全局=0.0596
+
+完成。所有产物位于 artifacts/demo
